@@ -15,29 +15,26 @@ class album {
     string gen_muzical;
     int nrMelodii;
     int anLansare;
-
-public:
-    album(const string &nume, const string &genMuzical, int nrMelodii, int anLansare, int durata,
-          const vector<melodie> &melodii);
-
-private:
     int durata;
-    vector<melodie> melodii;
-
+     vector<melodie> melodii;
 
 public:
-   /* int getVanzari() const {
-        return vanzari;
-    } */
+    album(const string &nume, const string &genMuzical, int nrMelodii, int anLansare);
+
+    int getDurata() const;
 
 
-    void adauga(melodie &m);
+    /* int getVanzari() const {
+         return vanzari;
+     } */
 
 
+     void adauga(melodie &m);
 
-    //friend ostream &operator<<(ostream &os, const album &albume) ;
+    friend ostream &operator<<(ostream &os, const album &album);
 
-    void durata_album();
+
+    int durata_album();
 };
 
 

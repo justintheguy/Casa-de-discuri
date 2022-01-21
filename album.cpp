@@ -5,9 +5,11 @@
 #include "album.h"
 void album::adauga(melodie &m){
     melodii.push_back(m);
+    durata = durata_album();
 }
 
-
+album::album(const string &nume, const string &genMuzical, int nrMelodii, int anLansare) : nume(nume), gen_muzical(genMuzical), nrMelodii(nrMelodii),
+                                                                                           anLansare(anLansare), durata(0) {}
 
  /* ostream &operator<<(ostream &os, const album &albume) {
     os << albume.nume << " " << albume.gen_muzical << " " << albume.nrMelodii << " " << albume.anLansare<< " "<<albume.vanzari<< endl;
@@ -17,14 +19,25 @@ void album::adauga(melodie &m){
     return os;
 } */
 
-void album::durata_album(){
+int album::durata_album(){
     int durata=0;
     int i;
     for(i = 0; i< melodii.size(); i++)
          durata = durata+ melodii[i].getDurata();
-    cout << "Durata albumului este de" <<durata;}
+    return durata;
+}
 
-album::album(const string &nume, const string &genMuzical, int nrMelodii, int anLansare, int durata,
-             const vector<melodie> &melodii) : nume(nume), gen_muzical(genMuzical), nrMelodii(nrMelodii),
-                                               anLansare(anLansare), durata(durata), melodii(melodii) {}
+int album::getDurata() const {
+    return durata;
+}
+
+ostream &operator<<(ostream &os, const album &album) {
+    os << "nume: " << album.nume << " gen_muzical: " << album.gen_muzical << " nrMelodii: " << album.nrMelodii
+       << " anLansare: " << album.anLansare << " durata: " << album.durata << " melodii: ";
+    for(const auto &it : album.melodii )
+        os << it << " ";
+    return os;
+}
+
+
 
